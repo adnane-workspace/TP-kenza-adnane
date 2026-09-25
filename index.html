@@ -1,2 +1,707 @@
-<h1>hello kenza</h1>
-<p> Hello adnane cv </p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VICE // CITY</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #08090d;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ===== BACKGROUND ===== */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(5, 7, 12, 0.95) 0%,
+                    rgba(5, 7, 12, 0.65) 45%,
+                    rgba(5, 7, 12, 0.25) 100%
+                ),
+                linear-gradient(
+                    180deg,
+                    transparent 60%,
+                    #08090d 100%
+                );
+        }
+
+        .sun {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            right: 10%;
+            top: 15%;
+            background: linear-gradient(#ff7b8f, #ffbd72);
+            box-shadow:
+                0 0 80px #ff5477,
+                0 0 160px rgba(255, 80, 120, 0.35);
+            opacity: 0.85;
+        }
+
+        .sun::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 20px,
+                rgba(10,10,20,0.4) 21px,
+                rgba(10,10,20,0.4) 24px
+            );
+        }
+
+        /* ===== CITY ===== */
+
+        .city {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 48%;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            opacity: 0.8;
+        }
+
+        .building {
+            background: linear-gradient(
+                90deg,
+                #0b0d14,
+                #151824
+            );
+            width: 5%;
+            min-width: 35px;
+            position: relative;
+        }
+
+        .building:nth-child(1) { height: 40%; }
+        .building:nth-child(2) { height: 75%; }
+        .building:nth-child(3) { height: 50%; }
+        .building:nth-child(4) { height: 90%; }
+        .building:nth-child(5) { height: 65%; }
+        .building:nth-child(6) { height: 80%; }
+        .building:nth-child(7) { height: 45%; }
+        .building:nth-child(8) { height: 70%; }
+        .building:nth-child(9) { height: 95%; }
+        .building:nth-child(10) { height: 55%; }
+        .building:nth-child(11) { height: 80%; }
+        .building:nth-child(12) { height: 48%; }
+        .building:nth-child(13) { height: 68%; }
+        .building:nth-child(14) { height: 90%; }
+        .building:nth-child(15) { height: 60%; }
+        .building:nth-child(16) { height: 76%; }
+        .building:nth-child(17) { height: 52%; }
+        .building:nth-child(18) { height: 85%; }
+        .building:nth-child(19) { height: 45%; }
+        .building:nth-child(20) { height: 72%; }
+
+        .building::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255, 210, 100, 0.55) 0px,
+                    rgba(255, 210, 100, 0.55) 3px,
+                    transparent 3px,
+                    transparent 14px
+                );
+            opacity: 0.5;
+        }
+
+        /* ===== NAVBAR ===== */
+
+        nav {
+            position: relative;
+            z-index: 10;
+            height: 90px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(5,6,10,0.25);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 5px;
+        }
+
+        .logo span {
+            color: #ff4f87;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff6b9d;
+        }
+
+        .menu {
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== HERO CONTENT ===== */
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 130px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ff7b9f;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 35px;
+            height: 1px;
+            background: #ff668f;
+        }
+
+        h1 {
+            font-size: clamp(70px, 11vw, 160px);
+            line-height: 0.8;
+            letter-spacing: -8px;
+            text-transform: uppercase;
+            font-weight: 900;
+            max-width: 850px;
+        }
+
+        h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.7);
+        }
+
+        .description {
+            max-width: 470px;
+            margin-top: 40px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 16px 28px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #ff477d;
+            color: white;
+            box-shadow: 0 10px 35px rgba(255,71,125,0.25);
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 45px rgba(255,71,125,0.4);
+        }
+
+        .secondary {
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+        }
+
+        .secondary:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ===== STATS ===== */
+
+        .stats {
+            position: absolute;
+            z-index: 10;
+            right: 7%;
+            bottom: 70px;
+            display: flex;
+            gap: 45px;
+        }
+
+        .stat {
+            text-align: right;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .stat small {
+            color: rgba(255,255,255,0.45);
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== SECOND SECTION ===== */
+
+        .section {
+            padding: 120px 7%;
+            background: #08090d;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            color: #ff638f;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: clamp(40px, 6vw, 75px);
+            line-height: 0.95;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+        }
+
+        .section-description {
+            max-width: 350px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        /* ===== CARDS ===== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(
+                145deg,
+                #151721,
+                #090a0f
+            );
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,91,137,0.5);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: #ff416f;
+            filter: blur(100px);
+            opacity: 0.15;
+            top: -100px;
+            right: -80px;
+        }
+
+        .number {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 2px;
+        }
+
+        .icon {
+            position: absolute;
+            top: 60px;
+            left: 30px;
+            font-size: 55px;
+            filter: grayscale(1);
+        }
+
+        .card h3 {
+            font-size: 28px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.45);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            padding: 45px 7%;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.35);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-content {
+                padding-top: 100px;
+            }
+
+            h1 {
+                letter-spacing: -4px;
+            }
+
+            .sun {
+                width: 250px;
+                height: 250px;
+                right: -50px;
+            }
+
+            .stats {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin: 60px 7%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                display: block;
+            }
+
+            .section-description {
+                margin-top: 25px;
+            }
+
+            footer {
+                display: block;
+                line-height: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="sun"></div>
+
+        <div class="city">
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+            <div class="building"></div>
+        </div>
+
+        <nav>
+            <div class="logo">
+                VICE<span>//</span>06
+            </div>
+
+            <ul>
+                <li><a href="#city">City</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#world">World</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="menu">
+                MENU
+            </div>
+        </nav>
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Welcome to the city
+            </div>
+
+            <h1>
+                Neon
+                <span>nights.</span>
+            </h1>
+
+            <p class="description">
+                Where the city never sleeps. Luxury, speed, nightlife
+                and endless possibilities collide beneath the Miami sunset.
+            </p>
+
+            <div class="buttons">
+                <a href="#stories" class="btn primary">
+                    Enter the city
+                </a>
+
+                <a href="#world" class="btn secondary">
+                    Explore
+                </a>
+            </div>
+
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <strong>24/7</strong>
+                <small>Nightlife</small>
+            </div>
+
+            <div class="stat">
+                <strong>06</strong>
+                <small>Districts</small>
+            </div>
+
+            <div class="stat">
+                <strong>∞</strong>
+                <small>Stories</small>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- STORIES -->
+    <section class="section" id="stories">
+
+        <div class="section-header">
+
+            <div>
+                <div class="section-label">
+                    Discover
+                </div>
+
+                <h2>
+                    The city<br>
+                    is yours.
+                </h2>
+            </div>
+
+            <p class="section-description">
+                Explore a world built around ambition, nightlife,
+                underground culture and unforgettable moments.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="number">
+                    01 / 03
+                </div>
+
+                <div class="icon">
+                    🌴
+                </div>
+
+                <h3>
+                    Vice
+                </h3>
+
+                <p>
+                    Palm trees, ocean roads and neon lights.
+                    The perfect city after midnight.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="number">
+                    02 / 03
+                </div>
+
+                <div class="icon">
+                    🏎
+                </div>
+
+                <h3>
+                    Speed
+                </h3>
+
+                <p>
+                    Fast cars, endless highways and a city
+                    waiting to be discovered.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="number">
+                    03 / 03
+                </div>
+
+                <div class="icon">
+                    🌃
+                </div>
+
+                <h3>
+                    Afterdark
+                </h3>
+
+                <p>
+                    When the sun disappears, another world
+                    comes alive.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WORLD -->
+    <section class="section" id="world">
+
+        <div class="section-header">
+
+            <div>
+                <div class="section-label">
+                    Explore
+                </div>
+
+                <h2>
+                    No rules.<br>
+                    Just stories.
+                </h2>
+            </div>
+
+            <p class="section-description">
+                Every street hides a story. Every night creates
+                another memory.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer id="contact">
+
+        <div>
+            VICE // 06
+        </div>
+
+        <div>
+            Los Santos • Vice City • 2026
+        </div>
+
+        <div>
+            All rights reserved
+        </div>
+
+    </footer>
+
+</body>
+</html>
